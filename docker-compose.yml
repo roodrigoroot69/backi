@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+
+  backend:
+    container_name: backend
+    build:
+      context: .
+    env_file: .env
+    command: sh -c "python3 manage.py migrate &&
+      python3 manage.py runserver 0.0.0.0:8000"
+    ports:
+        - "8000:8000"
+    volumes:
+        - .:/app
+    restart: always
